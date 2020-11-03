@@ -6,7 +6,7 @@
 <meta charset="ISO-8859-1">
 <title>AWS</title>
 </head>
-<body bgcolor="silver">
+<body>
 
 <h3>${errorMessage}</h3>
 
