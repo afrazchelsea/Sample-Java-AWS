@@ -25,24 +25,22 @@ public class login {
 
 	@Value("${spring.datasource.password}")
 	private String DBpassword;
+	private String userId ="";
 
-	private String userId = "";
-
-	private String errorMessage="";
+	private String errorMessage="Login failed, check credentials.";
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public ModelAndView login(String userName, String password) throws ClassNotFoundException {
 
-		
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		// validate user credentials
-		String query = "select * from Employee where username='" + userName + "' and password='"+password+"'";
+		String query = "select * from Employee where username='"+userName+"' and password='"+password+"'";
 		try (Connection con = DriverManager.getConnection(url, DBusername, DBpassword);
 				Statement st = con.createStatement();
 				ResultSet rs = st.executeQuery(query)) {
-			if (rs.next()) {
+			if (rs.next()){
 				System.out.println(
-						rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4));
+				rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4));
 				userId = rs.getString(4);
 			}
 		} catch (SQLException ex) {
@@ -51,28 +49,21 @@ public class login {
 		}
 
 		ModelAndView mv;
-		if (userId != "")
-		{			
+		if (userId != ""){			
 			mv = new ModelAndView("user");
 			mv.addObject("username", userId);
 		}
-		else
-		{
-			
+		else{
 			mv = new ModelAndView("login");
 			mv.addObject("errorMessage", errorMessage);
 		}
-
 		return mv;
 	}
-	
-	
 	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public ModelAndView registerform()
 	{
 		ModelAndView mv=new ModelAndView("login");
-		
 		return mv;		
 	}
 

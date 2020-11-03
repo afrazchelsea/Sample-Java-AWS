@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class register {
 	
-
 	@Value("${spring.datasource.url}")
 	private String url;
 
@@ -37,7 +36,7 @@ public class register {
 	@RequestMapping(value = "register", method = RequestMethod.POST)
 	public ModelAndView register(String firstName,String lastName,String email,String userName,String password) throws ClassNotFoundException
 	{
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		//Add employee here
 		try (Connection con = DriverManager.getConnection(url, DBusername, DBpassword);
 				Statement st = con.createStatement()) {
@@ -53,7 +52,7 @@ public class register {
 				
 		
 		ModelAndView mv=new ModelAndView("register");		
-		mv.addObject("message", "user account has been added for "+userName);
+		mv.addObject("message", "User registered  - "+userName);
 		return mv;		
 	}
 	

@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>AWS</title>
 </head>
 <body>
-Already registered!! <a href="login">Login Here</a>
+Already registered, <a href="login">login Here</a>
 </body>
 </html>

@@ -7,11 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<center>
-${message }
-</center>
+<h3>
+${message}
+</h3>
  <form method="post" action="register">
-            <center>
             <table border="1" width="30%" cellpadding="5">
                 <thead>
                     <tr>
@@ -44,11 +43,10 @@ ${message }
                         <td><input type="reset" value="Reset" /></td>
                     </tr>
                     <tr>
-                        <td colspan="2">Already registered!! <a href="login">Login Here</a></td>
+                        <td colspan="2">Already registered,<a href="login"> login Here</a></td>
                     </tr>
                 </tbody>
             </table>
-            </center>
         </form>
 </body>
 </html>
